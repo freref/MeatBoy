@@ -3,5 +3,4 @@ project(MeatBoy)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Add the src subdirectory
 add_subdirectory(src)

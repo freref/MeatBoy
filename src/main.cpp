@@ -1,6 +1,6 @@
-#include <iostream>
+#include "game/Game.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Game::createWindow();
     return 0;
 }
