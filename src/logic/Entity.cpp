@@ -2,23 +2,23 @@
 
 #include "Entity.h"
 
-Entity::Entity(int _x, int _y) {
+model::Entity::Entity(int _x, int _y) {
     x = _x;
     y = _y;
 }
 
-int Entity::getX() const {
+int model::Entity::getX() const {
     return x;
 }
 
-int Entity::getY() const {
+int model::Entity::getY() const {
     return y;
 }
 
-void Entity::setX(int _x) {
+void model::Entity::setX(int _x) {
     x = _x;
 }
 
-void Entity::setY(int _y) {
+void model::Entity::setY(int _y) {
     y = _y;
 }

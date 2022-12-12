@@ -5,10 +5,12 @@
 
 #include "Entity.h"
 
-class Wall : public Entity{
-public:
-    Wall(int _x, int _y);
-};
+namespace model {
+    class Wall : public Entity {
+    public:
+        Wall(int _x, int _y);
+    };
+}
 
 
 #endif //MEATBOY_WALL_H

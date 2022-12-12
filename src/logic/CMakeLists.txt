@@ -1,2 +1,2 @@
-add_library(logic Camera.cpp Camera.h Stopwatch.cpp Stopwatch.h World.cpp World.h Entity.cpp Entity.h Player.cpp Player.h Wall.cpp Wall.h Goal.cpp Goal.h)
+add_library(logic Camera.cpp Camera.h Stopwatch.cpp Stopwatch.h World.cpp World.h Entity.cpp Entity.h Player.cpp Player.h Wall.cpp Wall.h Goal.cpp Goal.h AbstractFactory.h)
 target_include_directories(logic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

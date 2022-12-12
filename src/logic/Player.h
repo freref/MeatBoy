@@ -5,10 +5,12 @@
 
 #include "Entity.h"
 
-class Player : public Entity{
-public:
-    Player(int _x, int _y);
-};
+namespace model {
+    class Player : public Entity {
+    public:
+        Player(int _x, int _y);
+    };
+}
 
 
 #endif //MEATBOY_PLAYER_H
