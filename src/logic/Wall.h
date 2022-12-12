@@ -3,9 +3,11 @@
 #ifndef MEATBOY_WALL_H
 #define MEATBOY_WALL_H
 
+#include "Entity.h"
 
-class Wall {
-
+class Wall : public Entity{
+public:
+    Wall(int _x, int _y);
 };
 
 

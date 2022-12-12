@@ -1,6 +1,6 @@
 #include "game/Game.h"
 
 int main() {
-    Game::createWindow();
+    Game().run();
     return 0;
 }
