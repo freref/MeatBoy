@@ -1,16 +1,16 @@
 
 
-#ifndef MEATBOY_WALL_H
-#define MEATBOY_WALL_H
+#ifndef MEATBOY_WALLMODEL_H
+#define MEATBOY_WALLMODEL_H
 
 #include "Entity.h"
 
 namespace model {
-    class Wall : public Entity {
+class Wall : public model::Entity {
     public:
         Wall(int _x, int _y);
     };
 }
 
 
-#endif //MEATBOY_WALL_H
+#endif //MEATBOY_WALLMODEL_H

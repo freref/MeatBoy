@@ -1,16 +1,16 @@
 
 
-#ifndef MEATBOY_PLAYER_H
-#define MEATBOY_PLAYER_H
+#ifndef MEATBOY_PLAYERMODEL_H
+#define MEATBOY_PLAYERMODEL_H
 
 #include "Entity.h"
 
 namespace model {
-    class Player : public Entity {
+    class Player : public model::Entity {
     public:
         Player(int _x, int _y);
     };
 }
 
 
-#endif //MEATBOY_PLAYER_H
+#endif //MEATBOY_PLAYERMODEL_H

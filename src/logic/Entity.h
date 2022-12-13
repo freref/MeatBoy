@@ -8,7 +8,7 @@
 namespace model {
     class Entity {
     public:
-        std::string spritePath;
+        //std::string spritePath;
         int x;
         int y;
 
