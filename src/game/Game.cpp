@@ -3,8 +3,11 @@
 #include "Game.h"
 
 Game::Game() {
-    window = std::unique_ptr<sf::Window>(new sf::Window);
-    window->create(sf::VideoMode(1080, 1920), "Meat Boy");
+    window = std::shared_ptr<sf::RenderWindow>(new sf::RenderWindow);
+    window->setFramerateLimit(60);
+    window->create(sf::VideoMode(1080, 1920, 32), "Meat Boy");
+
+    stateManager = std::shared_ptr<StateManager>(new StateManager(window));
 }
 
 void Game::run()
@@ -16,12 +19,9 @@ void Game::run()
         sf::Event event;
         while (window->pollEvent(event))
         {
-            // Close window: exit
-            if (event.type == sf::Event::Closed)
-                window->close();
+            stateManager->handleEvent(event);
         }
-
         // Update the window
-        window->display();
+        //window->display();
     }
 }

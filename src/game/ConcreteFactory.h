@@ -3,12 +3,18 @@
 #ifndef MEATBOY_CONCRETEFACTORY_H
 #define MEATBOY_CONCRETEFACTORY_H
 
+#include <SFML/Graphics.hpp>
+
+#include "EntityView.h"
 #include "../logic/AbstractFactory.h"
 
-class ConcreteFactory : public AbstractFactory {
-    std::shared_ptr<model::Wall> createWall(int _x, int _y) const override;
-    std::shared_ptr<model::Player> createPlayer(int _x, int _y) const override;
-    std::shared_ptr<model::Goal> createGoal(int _x, int _y) const override;
+
+class ConcreteFactory : public AbstractFactory{
+    std::shared_ptr<sf::RenderWindow> window;
+public:
+    ConcreteFactory(const std::shared_ptr<sf::RenderWindow> _window): window(_window) {};
+
+    std::shared_ptr<MenuItemModel> createMenuItem(std::string &title) override;
 };
 
 

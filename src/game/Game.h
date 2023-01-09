@@ -3,13 +3,12 @@
 #ifndef MEATBOY_GAME_H
 #define MEATBOY_GAME_H
 
-#include <SFML/Graphics.hpp>
-#include <memory>
+#include "StateManager.h"
 
 class Game {
+    std::shared_ptr<sf::RenderWindow> window;
+    std::shared_ptr<StateManager> stateManager;
 public:
-    std::unique_ptr<sf::Window> window;
-
     Game();
     void run();
 };
