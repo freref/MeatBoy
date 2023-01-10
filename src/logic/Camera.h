@@ -20,6 +20,7 @@ public:
 
     int projectX(int x);
     int projectY(int y);
+    int unprojectY(int y);
 };
 
 

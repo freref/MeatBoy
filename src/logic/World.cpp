@@ -70,5 +70,53 @@ void World::levelSetup(AbstractFactory &_factory) {
 }
 
 void World::update(){
-    player->update();
+    player->update(floorCollision(), ceilingCollision(), leftWallCollision());
+}
+
+bool World::floorCollision(){
+    for(auto &wall : walls){
+        if(wall->x == int(player->x / camera->getSizeWidth())){
+            float wallCoordX = camera->projectX(wall->x);
+            float wallCoordY = camera->projectY(wall->y);
+
+            double epsilon = 10;
+            double diff = fabs(player->y - (wallCoordY - camera->getSizeWidth()/4));
+            if (diff <= epsilon) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool World::ceilingCollision(){
+    for(auto &wall : walls){
+        if(wall->x == int(player->x / camera->getSizeWidth())){
+            float wallCoordX = camera->projectX(wall->x);
+            float wallCoordY = camera->projectY(wall->y);
+
+            double epsilon = 10;
+            double diff = fabs((player->y - camera->getSizeWidth())- (wallCoordY));
+            if (diff <= epsilon) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool World::leftWallCollision(){
+    for(auto &wall : walls){
+            float wallCoordX = camera->projectX(wall->x);
+            float wallCoordY = camera->projectY(wall->y);
+
+            if(wallCoordY < player->y && player->y < wallCoordY + camera->getSizeWidth()){
+                double epsilon = 10;
+                double diff = fabs((player->x - camera->getSizeWidth())- (wallCoordX));
+                if (diff <= epsilon) {
+                    return true;
+                }
+            }
+    }
+    return false;
 }

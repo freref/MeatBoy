@@ -21,14 +21,23 @@ void MenuModel::previousLevel(){
         selectedLevel = levels.size() -1;
 }
 
-void PlayerModel::update(){
+void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWallCollision){
     float deltaTime = Stopwatch::getInstance().elapsed();
     Stopwatch::getInstance().newFrame();
     // Apply gravity
-    vv -= g * deltaTime * 0.002;
+    vv -= g * deltaTime*0.1;
+
+    if(ceilingCollision && vv > 0)
+        vv = 0;
+
+    if(floorCollision && vv < 0)
+        vv = 0;
 
     // Apply acceleration
     vh += a * deltaTime;
+
+    if(leftWallCollision && vh < 0)
+        vh = 0;
 
     // Limit the velocity to the terminal velocity
     if (vh > maxVh) vh = maxVh;
@@ -37,10 +46,8 @@ void PlayerModel::update(){
     if (vv < -maxVv) vv = -maxVv;
 
     // Update the position based on the velocity
-    //std::cout << y << " " << " " << vv << " " << deltaTime << std::endl;
-    x += vh * deltaTime * 0.01;
-    y -= vv * deltaTime * 0.01;
-    usleep(1000000);
+    x += vh * deltaTime * 1;
+    y -= vv * deltaTime * 1;
 }
 
 // Handle input from the left arrow or A key
@@ -54,6 +61,6 @@ void PlayerModel::moveRight() {
 }
 
 void PlayerModel::moveUp() {
-    if(vv <= 0)
-        vv = 5;
+    if(vv == 0)
+        vv = 10;
 }

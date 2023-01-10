@@ -45,7 +45,7 @@ class PlayerModel : public EntityModel {
 public:
     PlayerModel(int x, int y): EntityModel(x, y), vh(0), vv(0), a(0), g(0.3), maxVh(3), maxVv(5){};
 
-    void update();
+    void update(bool floorCollision, bool ceilingCollision, bool leftWallCollision);
     void moveLeft();
     void moveRight();
     void moveUp();

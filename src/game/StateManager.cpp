@@ -12,15 +12,21 @@ StateManager::StateManager(std::shared_ptr<sf::RenderWindow> &_window)
     this->draw();
 };
 
-void StateManager::handleEvent(sf::Event &event) {
-    int result = currentState->handleEvent(event);
+void StateManager::handleEvent() {
+
+
+    int result = currentState->handleEvent();
+
     if (result == 1){
         currentState = std::shared_ptr<State>(new MenuState(window, world));
+        window->clear();
+        this->draw();
     }
 
-    else if (result == 2){
+    if (result == 2){
         currentState = std::shared_ptr<State>(new LevelState(camera, window, world));
+        window->clear();
+        this->draw();
+        window->display();
     }
-
-    this->draw();
 }

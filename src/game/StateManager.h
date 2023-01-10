@@ -16,7 +16,7 @@ public:
     StateManager(std::shared_ptr<sf::RenderWindow> &_window);
 
     void setState(std::shared_ptr<State> &state) { currentState = state; }
-    void handleEvent(sf::Event &event);
+    void handleEvent();
     void draw() { currentState->draw();};
     void update() {currentState->update();};
 

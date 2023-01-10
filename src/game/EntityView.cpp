@@ -12,7 +12,7 @@ void WallView::draw(float x, float y, int size) {
     rectangle.setFillColor(sf::Color::Red);
 
     window->draw(rectangle);
-    window->display();
+    //window->display();
 }
 
 void PlayerView::draw(float x, float y, int size) {
@@ -40,6 +40,7 @@ void GoalView::draw(float x, float y, int size) {
 }
 
 void MenuView::draw() {
+    window->clear();
     // Load the font from a file
     sf::Font font;
     if (!font.loadFromFile("../../assets/Zag.ttf")) {
@@ -93,6 +94,5 @@ void MenuView::draw() {
     for (const sf::Text& text : rectangleTexts) {
         window->draw(text);
     }
-
     window->display();
 }

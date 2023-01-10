@@ -12,7 +12,7 @@ public:
     State(const std::shared_ptr<sf::RenderWindow> &_window,
     const std::shared_ptr<World> &_world) : window(_window), world(_world) {};
 
-    virtual int handleEvent(sf::Event& event);
+    virtual int handleEvent();
     virtual void draw() {};
     virtual void update() {};
 
@@ -25,7 +25,7 @@ public:
     using State::State;
     void draw() override;
     void update() override{};
-    int handleEvent(sf::Event& event) override;
+    int handleEvent() override;
 };
 
 class LevelState : public State {
@@ -39,7 +39,7 @@ public:
 
     void draw() override;
     void update() override;
-    int handleEvent(sf::Event& event) override;
+    int handleEvent() override;
 };
 
 

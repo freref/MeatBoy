@@ -10,6 +10,7 @@
 #include <regex>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 class AbstractFactory;
 class World {
@@ -25,6 +26,9 @@ public:
     void menuSetup();
     void levelSetup(AbstractFactory &_factory);
     void update();
+    bool floorCollision();
+    bool ceilingCollision();
+    bool leftWallCollision();
 };
 
 
