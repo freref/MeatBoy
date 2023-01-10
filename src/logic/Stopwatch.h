@@ -24,7 +24,7 @@ public:
     // Get the elapsed time in milliseconds since the stopwatch was started
     int elapsed() {
         high_resolution_clock::time_point currentTime = high_resolution_clock::now();
-        auto elapsedTime = duration_cast<microseconds>(currentTime - startTime).count();
+        auto elapsedTime = duration_cast<milliseconds>(currentTime - startTime).count();
         return elapsedTime;
     }
 

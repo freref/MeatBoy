@@ -18,8 +18,10 @@ void Game::run()
         // Process events
         sf::Event event;
 
-            while(window->pollEvent(event)){
-                stateManager->handleEvent(event);
-            }
+        while(window->pollEvent(event)){
+            stateManager->handleEvent(event);
+        }
+
+        stateManager->update();
     }
 }

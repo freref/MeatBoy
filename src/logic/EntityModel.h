@@ -48,6 +48,7 @@ public:
     void update();
     void moveLeft();
     void moveRight();
+    void moveUp();
     void jump();
     bool collidesWithWall();
 

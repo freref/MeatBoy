@@ -45,6 +45,8 @@ void World::levelSetup(AbstractFactory &_factory) {
     // Read the contents of the file line by line
     std::string line;
     int y = 0;
+    int playerX = 0;
+    int playerY = 0;
     while (std::getline(file, line)) {
         camera->setSizeWidth(line.length());
         for(int x = 0; x < line.length(); x++){
@@ -55,12 +57,14 @@ void World::levelSetup(AbstractFactory &_factory) {
                 goal = _factory.createGoal(x, y);
             }
             else if(line[x] == 'o'){
-                player = _factory.createPlayer(x, y);
+                playerX = x;
+                playerY = y;
             }
         }
         y++;
     }
     camera->setSizeHeight(y);
+    player = _factory.createPlayer(camera->projectX(playerX), camera->projectY(playerY)+3*camera->getSizeWidth()/4);
     // Close the file
     file.close();
 }

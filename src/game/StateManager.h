@@ -18,6 +18,7 @@ public:
     void setState(std::shared_ptr<State> &state) { currentState = state; }
     void handleEvent(sf::Event &event);
     void draw() { currentState->draw();};
+    void update() {currentState->update();};
 
 private:
     std::shared_ptr<Camera> camera;

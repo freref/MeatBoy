@@ -13,16 +13,28 @@ int State::handleEvent(sf::Event &event) {
     return 0;
 }
 
+void LevelState::update(){
+    world->update();
+}
+
 int LevelState::handleEvent(sf::Event &event) {
     State::handleEvent(event);
 
     if (event.type == sf::Event::KeyPressed) {
-        if (event.key.code == sf::Keyboard::Escape){
-            return 1;
+        switch(event.key.code){
+            case sf::Keyboard::Escape:
+                return 1;
+            case( sf::Keyboard::Left):
+                world->player->moveLeft();
+                break;
+            case( sf::Keyboard::Up):
+                world->player->moveUp();
+                break;
+            case( sf::Keyboard::Right):
+                world->player->moveRight();
+                break;
         }
     }
-
-    world->update();
 }
 
 void LevelState::draw(){
@@ -34,7 +46,7 @@ void LevelState::draw(){
     }
 
     world->goal->observers.back()->draw(camera->projectX(world->goal->x), camera->projectY(world->goal->y), camera->getSizeWidth());
-    world->player->observers.back()->draw(camera->projectX(world->player->x), camera->projectY(world->player->y), camera->getSizeWidth());
+    world->player->observers.back()->draw(world->player->x, world->player->y, camera->getSizeWidth());
 
     window->display();
 }
