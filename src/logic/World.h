@@ -31,6 +31,7 @@ public:
     bool leftWallCollision();
     bool rightWallCollision();
     bool goalCollision();
+    bool goUpAuto = false;
 };
 
 

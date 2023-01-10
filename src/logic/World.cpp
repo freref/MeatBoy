@@ -50,8 +50,12 @@ void World::levelSetup(AbstractFactory &_factory) {
     while (std::getline(file, line)) {
         camera->setSizeWidth(line.length());
         for(int x = 0; x < line.length(); x++){
+            if(line == "auto: on"){
+                goUpAuto = true;
+                continue;
+            }
             if(line[x] == '-'){
-                walls.push_back(_factory.createWall(x, y ));
+                walls.push_back(_factory.createWall(x, y));
             }
             else if(line[x] == 'x'){
                 goal = _factory.createGoal(x, y);
@@ -64,17 +68,20 @@ void World::levelSetup(AbstractFactory &_factory) {
         y++;
     }
     camera->setSizeHeight(y);
-    player = _factory.createPlayer(camera->projectX(playerX), camera->projectY(playerY)+3*camera->getSizeWidth()/4);
+    player = _factory.createPlayer(camera->projectX(playerX)+1.5*camera->getSizeWidth()/4, camera->projectY(playerY)+3*camera->getSizeWidth()/4);
     // Close the file
     file.close();
 }
 
 int World::update(){
     player->update(floorCollision(), ceilingCollision(), leftWallCollision(), rightWallCollision());
-    std::cout << player->y << std::endl;
-    if(player->y < 0.2* camera->windowHeight){
+    if(player->y < 0.2* camera->windowHeight && !goUpAuto){
         float deltaTime = Stopwatch::getInstance().elapsed();
-        camera->goUp(0.1);
+        camera->goUp(0.2);
+    }
+
+    if(goUpAuto){
+        camera->goUp(0.05);
     }
     if(player->y > camera->windowHeight){
         return 1;
@@ -89,7 +96,7 @@ bool World::floorCollision(){
             float wallCoordX = camera->projectX(wall->x);
             float wallCoordY = camera->projectY(wall->y)+camera->height;
 
-            double epsilon = 10;
+            double epsilon = 20;
             double diff = fabs(player->y - (wallCoordY - camera->getSizeWidth()/4));
             if (diff <= epsilon) {
                 return true;
@@ -105,7 +112,7 @@ bool World::ceilingCollision(){
             float wallCoordX = camera->projectX(wall->x);
             float wallCoordY = camera->projectY(wall->y)+camera->height;
 
-            double epsilon = 10;
+            double epsilon = 20;
             double diff = fabs((player->y - camera->getSizeWidth())- (wallCoordY));
             if (diff <= epsilon) {
                 return true;
@@ -124,7 +131,7 @@ bool World::leftWallCollision(){
             float wallCoordY = camera->projectY(wall->y)+camera->height;
 
             if(wallCoordY < player->y && player->y < wallCoordY + camera->getSizeWidth()){
-                double epsilon = 10;
+                double epsilon = 20;
                 double diff = fabs((player->x - camera->getSizeWidth())- (wallCoordX));
                 if (diff <= epsilon) {
                     return true;
@@ -143,7 +150,7 @@ bool World::rightWallCollision(){
         float wallCoordY = camera->projectY(wall->y)+camera->height;
 
         if(wallCoordY < player->y && player->y < wallCoordY + camera->getSizeWidth()){
-            double epsilon = 10;
+            double epsilon = 20;
             double diff = fabs((player->x + camera->getSizeWidth()/4) - (wallCoordX));
             if (diff <= epsilon) {
                 return true;

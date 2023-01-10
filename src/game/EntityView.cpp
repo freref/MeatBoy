@@ -31,7 +31,7 @@ void GoalView::draw(float x, float y, int size) {
     sf::RectangleShape rectangle(sf::Vector2f(size/4, size/4));
 
     // Set the rectangle's position (in pixels)
-    rectangle.setPosition(x + 1.5*size/4 , y + 3*size/4);
+    rectangle.setPosition(x + 1.5*size/4 , y + 1.5*size/4);
 
     // Set the rectangle's fill color
     rectangle.setFillColor(sf::Color::Green);

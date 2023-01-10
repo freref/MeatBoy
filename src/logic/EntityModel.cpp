@@ -28,7 +28,7 @@ void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWa
     vv -= g * deltaTime*0.1;
 
     if(ceilingCollision && vv > 0)
-        vv = 0;
+        vv = -g * deltaTime*0.1;
 
     if(floorCollision && vv < 0)
         vv = 0;

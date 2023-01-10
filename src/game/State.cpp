@@ -13,7 +13,6 @@ void LevelState::update(){
     world->update();
     window->clear();
     world->player->observers.back()->draw(world->player->x, world->player->y, camera->getSizeWidth());
-    //window->display();
 }
 
 int LevelState::handleEvent() {
@@ -49,14 +48,10 @@ void LevelState::draw(){
 
     for(auto wall : world->walls){
         wall->observers.back()->draw(camera->projectX(wall->x), camera->projectY(wall->y)+camera->height, camera->getSizeWidth());
-        //window->display();
     }
 
     world->goal->observers.back()->draw(camera->projectX(world->goal->x), camera->projectY(world->goal->y)+camera->height, camera->getSizeWidth());
     world->player->observers.back()->draw(world->player->x, world->player->y, camera->getSizeWidth());
-
-    //
-    //window->display();
 }
 
 int MenuState::handleEvent() {

@@ -19,6 +19,7 @@ void StateManager::handleEvent() {
 
     if (result == 1){
         camera->reset();
+        world->goUpAuto = false;
         currentState = std::shared_ptr<State>(new MenuState(window, world));
         window->clear();
         this->draw();
