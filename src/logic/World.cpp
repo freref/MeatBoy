@@ -3,7 +3,8 @@
 #include "World.h"
 #include <iostream>
 
-World::World(AbstractFactory &_factory) : factory(_factory) {
+World::World(AbstractFactory &_factory, std::shared_ptr<Camera> &_camera) : factory(_factory), camera(_camera) {
+
     menuSetup();
 }
 
@@ -29,7 +30,7 @@ void World::menuSetup(){
 }
 
 
-void World::levelSetup() {
+void World::levelSetup(AbstractFactory &_factory) {
     std::cout << "factory: " << &factory << std::endl;
 
     std::string levelName = menu->levels[menu->selectedLevel] + ".level";
@@ -46,14 +47,19 @@ void World::levelSetup() {
     std::string line;
     int y = 0;
     while (std::getline(file, line)) {
+        std::vector<std::shared_ptr<WallModel>> row;
         for(int x = 0; x < line.length(); x++){
+            camera->setSizeWidth(line.length());
+
             if(line[x] == '-'){
-                factory.createWall(x, y);
+                row.push_back(_factory.createWall(x, y ));
             }
+            walls.push_back(row);
+
         }
         y++;
     }
-
+    camera->setSizeHeight(y);
     // Close the file
     file.close();
 }

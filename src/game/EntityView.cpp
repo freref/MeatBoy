@@ -2,6 +2,18 @@
 
 #include "EntityView.h"
 
+void WallView::draw(int x, int y, int size) {
+    sf::RectangleShape rectangle(sf::Vector2f(size, size));
+
+    // Set the rectangle's position (in pixels)
+    rectangle.setPosition(x, y);
+
+    // Set the rectangle's fill color
+    rectangle.setFillColor(sf::Color::Red);
+
+    window->draw(rectangle);
+    window->display();
+}
 
 void MenuView::draw() {
     // Load the font from a file

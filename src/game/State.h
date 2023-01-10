@@ -27,7 +27,10 @@ public:
 };
 
 class LevelState : public State {
-    using State::State;
+    std::shared_ptr<Camera> camera;
+public:
+    LevelState(const std::shared_ptr<Camera> &_camera, const std::shared_ptr<sf::RenderWindow> &_window,
+               const std::shared_ptr<World> &_world) : State(_window, _world), camera(_camera) {};
 
     void draw() override;
     int handleEvent(sf::Event& event) override;

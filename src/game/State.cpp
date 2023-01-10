@@ -19,6 +19,13 @@ int LevelState::handleEvent(sf::Event &event) {
 
 void LevelState::draw(){
     window->clear();
+
+    for(auto row : world->walls){
+        for(auto wall : row){
+            wall->observers.back()->draw(camera->projectX(wall->x), camera->projectY(wall->y), camera->getSizeWidth());
+        }
+
+    }
     window->display();
 }
 
@@ -37,7 +44,10 @@ int MenuState::handleEvent(sf::Event &event) {
         }
         else if (event.key.code == sf::Keyboard::Enter)
         {
-            world->levelSetup();
+            window->clear();
+            window->display();
+            ConcreteFactory factory = ConcreteFactory(window);
+            world->levelSetup(factory);
             return 2;
         }
         draw();
@@ -46,5 +56,6 @@ int MenuState::handleEvent(sf::Event &event) {
 }
 
 void MenuState::draw() {
+    window->clear();
     world->menu->observers.back()->draw();
 }

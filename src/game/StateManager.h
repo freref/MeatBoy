@@ -6,7 +6,9 @@
 #include <memory>
 #include "State.h"
 #include "../logic/World.h"
+#include "../logic/Camera.h"
 #include "ConcreteFactory.h"
+
 
 class StateManager
 {
@@ -18,6 +20,7 @@ public:
     void draw() { currentState->draw();};
 
 private:
+    std::shared_ptr<Camera> camera;
     std::shared_ptr<sf::RenderWindow> window;
     std::shared_ptr<State> menuState;
     std::shared_ptr<State> currentState;

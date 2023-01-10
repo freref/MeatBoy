@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+#include "../logic/Camera.h"
 #include "../logic/Observer.h"
 #include "../logic/EntityModel.h"
 
@@ -14,6 +15,7 @@
 class EntityView : public Observer {
 public:
     std::shared_ptr<sf::RenderWindow> window;
+    std::shared_ptr<Camera> camera;
 
     EntityView(std::shared_ptr<sf::RenderWindow> &_window)
             : window(_window) {};
@@ -27,12 +29,15 @@ public:
 
     MenuView(const std::shared_ptr<MenuModel> &menu, std::shared_ptr<sf::RenderWindow> &window): EntityView(window), menuModel(menu){};
     void draw() override;
+    void draw(int x, int y, int size) override {};
 };
 
 class WallView : public EntityView {
 public:
-    WallView(const std::shared_ptr<WallModel> &wall, std::shared_ptr<sf::RenderWindow> &window) : EntityView(window){};
-    void draw() override {};
+    std::shared_ptr<WallModel> wallModel;
+    WallView(const std::shared_ptr<WallModel> &wall, std::shared_ptr<sf::RenderWindow> &window) : EntityView(window), wallModel(wall){};
+    void draw() override{};
+    void draw(int x, int y, int size) override;
 };
 
 

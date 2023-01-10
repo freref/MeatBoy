@@ -11,11 +11,12 @@
 
 
 class EntityModel : public Subject {
+public:
     int x;
     int y;
-public:
+    int width;
     EntityModel(){};
-    EntityModel(int _x, int _y) : x(_x), y(_y){};
+    EntityModel(int _x, int _y) : x(_x), y(_y) {};
 };
 
 class MenuModel : public EntityModel {
