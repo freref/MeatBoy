@@ -29,6 +29,7 @@ public:
     bool floorCollision();
     bool ceilingCollision();
     bool leftWallCollision();
+    bool rightWallCollision();
 };
 
 

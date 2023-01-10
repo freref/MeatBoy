@@ -5,11 +5,12 @@
 
 
 class Camera {
+public:
     int windowWidth;
     int windowHeight;
     int sizeWidth;
     int sizeHeight;
-public:
+
     Camera(int _width, int _height) : windowWidth(_width), windowHeight(_height){};
 
     void setSizeWidth(int _sizeWidth){sizeWidth = _sizeWidth;};
@@ -20,7 +21,6 @@ public:
 
     int projectX(int x);
     int projectY(int y);
-    int unprojectY(int y);
 };
 
 

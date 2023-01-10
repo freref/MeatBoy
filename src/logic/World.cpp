@@ -70,7 +70,7 @@ void World::levelSetup(AbstractFactory &_factory) {
 }
 
 void World::update(){
-    player->update(floorCollision(), ceilingCollision(), leftWallCollision());
+    player->update(floorCollision(), ceilingCollision(), leftWallCollision(), rightWallCollision());
 }
 
 bool World::floorCollision(){
@@ -79,7 +79,7 @@ bool World::floorCollision(){
             float wallCoordX = camera->projectX(wall->x);
             float wallCoordY = camera->projectY(wall->y);
 
-            double epsilon = 10;
+            double epsilon = 5;
             double diff = fabs(player->y - (wallCoordY - camera->getSizeWidth()/4));
             if (diff <= epsilon) {
                 return true;
@@ -95,7 +95,7 @@ bool World::ceilingCollision(){
             float wallCoordX = camera->projectX(wall->x);
             float wallCoordY = camera->projectY(wall->y);
 
-            double epsilon = 10;
+            double epsilon = 5;
             double diff = fabs((player->y - camera->getSizeWidth())- (wallCoordY));
             if (diff <= epsilon) {
                 return true;
@@ -106,17 +106,39 @@ bool World::ceilingCollision(){
 }
 
 bool World::leftWallCollision(){
+    if(player->x <= 0){
+        return true;
+    }
     for(auto &wall : walls){
             float wallCoordX = camera->projectX(wall->x);
             float wallCoordY = camera->projectY(wall->y);
 
             if(wallCoordY < player->y && player->y < wallCoordY + camera->getSizeWidth()){
-                double epsilon = 10;
+                double epsilon = 5;
                 double diff = fabs((player->x - camera->getSizeWidth())- (wallCoordX));
                 if (diff <= epsilon) {
                     return true;
                 }
             }
+    }
+    return false;
+}
+
+bool World::rightWallCollision(){
+    if(player->x + camera->getSizeWidth()/4 > camera->windowWidth){
+        return true;
+    }
+    for(auto &wall : walls){
+        float wallCoordX = camera->projectX(wall->x);
+        float wallCoordY = camera->projectY(wall->y);
+
+        if(wallCoordY < player->y && player->y < wallCoordY + camera->getSizeWidth()){
+            double epsilon = 5;
+            double diff = fabs((player->x + camera->getSizeWidth()/4) - (wallCoordX));
+            if (diff <= epsilon) {
+                return true;
+            }
+        }
     }
     return false;
 }

@@ -21,7 +21,7 @@ void MenuModel::previousLevel(){
         selectedLevel = levels.size() -1;
 }
 
-void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWallCollision){
+void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWallCollision, bool rightWallCollision){
     float deltaTime = Stopwatch::getInstance().elapsed();
     Stopwatch::getInstance().newFrame();
     // Apply gravity
@@ -38,6 +38,24 @@ void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWa
 
     if(leftWallCollision && vh < 0)
         vh = 0;
+
+    if(rightWallCollision && vh > 0)
+        vh = 0;
+
+    if(leftWallCollision && vh == 0 && jumped){
+        a = 0.1;
+        vv = 5;
+        vh = 5;
+        jumped = false;
+    }
+
+
+    if(rightWallCollision && vh == 0 && jumped){
+        a = -0.1;
+        vv = 5;
+        vh = -5;
+        jumped = false;
+    }
 
     // Limit the velocity to the terminal velocity
     if (vh > maxVh) vh = maxVh;
@@ -63,4 +81,5 @@ void PlayerModel::moveRight() {
 void PlayerModel::moveUp() {
     if(vv == 0)
         vv = 10;
+    jumped = true;
 }
