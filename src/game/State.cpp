@@ -37,22 +37,22 @@ int LevelState::handleEvent() {
     }
 
 
-    world->update();
+    int result = world->update();
     window->clear();
     draw();
     window->display();
-    return 0;
+    return result;
 }
 
 void LevelState::draw(){
     window->clear();
 
     for(auto wall : world->walls){
-        wall->observers.back()->draw(camera->projectX(wall->x), camera->projectY(wall->y), camera->getSizeWidth());
+        wall->observers.back()->draw(camera->projectX(wall->x), camera->projectY(wall->y)+camera->height, camera->getSizeWidth());
         //window->display();
     }
 
-    world->goal->observers.back()->draw(camera->projectX(world->goal->x), camera->projectY(world->goal->y), camera->getSizeWidth());
+    world->goal->observers.back()->draw(camera->projectX(world->goal->x), camera->projectY(world->goal->y)+camera->height, camera->getSizeWidth());
     world->player->observers.back()->draw(world->player->x, world->player->y, camera->getSizeWidth());
 
     //

@@ -18,12 +18,14 @@ void StateManager::handleEvent() {
     int result = currentState->handleEvent();
 
     if (result == 1){
+        camera->reset();
         currentState = std::shared_ptr<State>(new MenuState(window, world));
         window->clear();
         this->draw();
     }
 
     if (result == 2){
+        camera->reset();
         currentState = std::shared_ptr<State>(new LevelState(camera, window, world));
         window->clear();
         this->draw();

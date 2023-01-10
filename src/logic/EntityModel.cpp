@@ -43,16 +43,16 @@ void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWa
         vh = 0;
 
     if(leftWallCollision && vh == 0 && jumped){
-        a = 0.1;
-        vv = 5;
+        a = 5;
+        vv = 10;
         vh = 5;
         jumped = false;
     }
 
 
     if(rightWallCollision && vh == 0 && jumped){
-        a = -0.1;
-        vv = 5;
+        a = -5;
+        vv = 10;
         vh = -5;
         jumped = false;
     }
@@ -64,8 +64,10 @@ void PlayerModel::update(bool floorCollision, bool ceilingCollision, bool leftWa
     if (vv < -maxVv) vv = -maxVv;
 
     // Update the position based on the velocity
-    x += vh * deltaTime * 1;
-    y -= vv * deltaTime * 1;
+    x += vh * deltaTime * 1.25;
+    y -= vv * deltaTime * 1.25;
+
+    a = 0;
 }
 
 // Handle input from the left arrow or A key

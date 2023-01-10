@@ -25,11 +25,12 @@ public:
     World(AbstractFactory &_factory, std::shared_ptr<Camera> &_camera);
     void menuSetup();
     void levelSetup(AbstractFactory &_factory);
-    void update();
+    int update();
     bool floorCollision();
     bool ceilingCollision();
     bool leftWallCollision();
     bool rightWallCollision();
+    bool goalCollision();
 };
 
 
