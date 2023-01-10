@@ -10,3 +10,13 @@ StateManager::StateManager(std::shared_ptr<sf::RenderWindow> &_window)
     currentState = std::shared_ptr<State>(new MenuState(window, world));
     this->draw();
 };
+
+void StateManager::handleEvent(sf::Event &event) {
+    int result = currentState->handleEvent(event);
+    if (result == 1)
+        currentState = std::shared_ptr<State>(new MenuState(window, world));
+    else if (result == 2)
+        currentState = std::shared_ptr<State>(new LevelState(window, world));
+
+    this->draw();
+}

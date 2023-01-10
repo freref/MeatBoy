@@ -4,6 +4,8 @@
 #define MEATBOY_ENTITYVIEW_H
 
 #include <memory>
+#include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "../logic/Observer.h"
 #include "../logic/EntityModel.h"
@@ -11,12 +13,26 @@
 
 class EntityView : public Observer {
 public:
-    EntityView(const std::shared_ptr<EntityModel>& entity_model) {};
+    std::shared_ptr<sf::RenderWindow> window;
+
+    EntityView(std::shared_ptr<sf::RenderWindow> &_window)
+            : window(_window) {};
+
+    using Observer::draw;
 };
 
-class MenuItemView : public EntityView {
+class MenuView : public EntityView {
 public:
-    MenuItemView(const std::shared_ptr<MenuItemModel> &menuItem) : EntityView(menuItem){};
+    std::shared_ptr<MenuModel> menuModel;
+
+    MenuView(const std::shared_ptr<MenuModel> &menu, std::shared_ptr<sf::RenderWindow> &window): EntityView(window), menuModel(menu){};
+    void draw() override;
+};
+
+class WallView : public EntityView {
+public:
+    WallView(const std::shared_ptr<WallModel> &wall, std::shared_ptr<sf::RenderWindow> &window) : EntityView(window){};
+    void draw() override {};
 };
 
 

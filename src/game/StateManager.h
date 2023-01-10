@@ -14,11 +14,12 @@ public:
     StateManager(std::shared_ptr<sf::RenderWindow> &_window);
 
     void setState(std::shared_ptr<State> &state) { currentState = state; }
-    void handleEvent(sf::Event &event) { currentState->handleEvent(event); }
+    void handleEvent(sf::Event &event);
     void draw() { currentState->draw();};
 
 private:
     std::shared_ptr<sf::RenderWindow> window;
+    std::shared_ptr<State> menuState;
     std::shared_ptr<State> currentState;
     std::shared_ptr<World> world;
 

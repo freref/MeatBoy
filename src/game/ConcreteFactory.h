@@ -13,8 +13,8 @@ class ConcreteFactory : public AbstractFactory{
     std::shared_ptr<sf::RenderWindow> window;
 public:
     ConcreteFactory(const std::shared_ptr<sf::RenderWindow> _window): window(_window) {};
-
-    std::shared_ptr<MenuItemModel> createMenuItem(std::string &title) override;
+    std::shared_ptr<MenuModel> createMenu() override;
+    std::shared_ptr<WallModel> createWall(int x, int y) override;
 };
 
 

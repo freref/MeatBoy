@@ -5,7 +5,8 @@
 
 
 class Observer {
-
+public:
+    virtual void draw() = 0;
 };
 
 

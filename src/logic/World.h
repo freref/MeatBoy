@@ -7,13 +7,18 @@
 #include <memory>
 #include <dirent.h>
 #include <regex>
+#include <fstream>
 
+class AbstractFactory;
 class World {
 public:
+    std::shared_ptr<MenuModel> menu;
+    std::vector<std::shared_ptr<WallModel>> walls;
     AbstractFactory &factory;
-    World(AbstractFactory &_factory);
 
-    std::vector<std::shared_ptr<MenuItemModel>> menuItems;
+    World(AbstractFactory &_factory);
+    void menuSetup();
+    void levelSetup();
 };
 
 

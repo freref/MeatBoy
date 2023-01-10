@@ -3,13 +3,15 @@
 #ifndef MEATBOY_SUBJECT_H
 #define MEATBOY_SUBJECT_H
 
-#include <list>
+#include <vector>
 #include <memory>
 #include "Observer.h"
 
 class Subject {
-    std::list<std::shared_ptr<Observer>> observers;
 public:
+    std::vector<std::shared_ptr<Observer>> observers;
+
+    Subject();
     void attach(std::shared_ptr<Observer> observer) {observers.push_back(observer);};
 };
 

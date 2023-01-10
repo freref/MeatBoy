@@ -20,13 +20,17 @@ public:
 };
 
 class MenuState : public State {
-    //void handleEvent(sf::Event& event);
 public:
     using State::State;
     void draw() override;
-    int handleEvent(sf::Event& event);
+    int handleEvent(sf::Event& event) override;
+};
 
-    int levelSelected;
+class LevelState : public State {
+    using State::State;
+
+    void draw() override;
+    int handleEvent(sf::Event& event) override;
 };
 
 
