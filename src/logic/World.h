@@ -16,12 +16,15 @@ class World {
 public:
     std::shared_ptr<Camera> camera;
     std::shared_ptr<MenuModel> menu;
-    std::vector<std::vector<std::shared_ptr<WallModel>>> walls;
+    std::vector<std::shared_ptr<WallModel>> walls;
+    std::shared_ptr<GoalModel> goal;
+    std::shared_ptr<PlayerModel> player;
     AbstractFactory &factory;
 
     World(AbstractFactory &_factory, std::shared_ptr<Camera> &_camera);
     void menuSetup();
     void levelSetup(AbstractFactory &_factory);
+    void update();
 };
 
 

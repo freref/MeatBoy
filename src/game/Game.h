@@ -4,6 +4,7 @@
 #define MEATBOY_GAME_H
 
 #include "StateManager.h"
+#include "../logic/Stopwatch.h"
 
 class Game {
     std::shared_ptr<sf::RenderWindow> window;

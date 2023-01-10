@@ -8,13 +8,14 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "Stopwatch.h"
+
 
 
 class EntityModel : public Subject {
 public:
-    int x;
-    int y;
-    int width;
+    float x;
+    float y;
     EntityModel(){};
     EntityModel(int _x, int _y) : x(_x), y(_y) {};
 };
@@ -33,6 +34,36 @@ public:
 class WallModel : public EntityModel {
 public:
     WallModel(int x, int y): EntityModel(x, y){};
+};
+
+class GoalModel : public EntityModel {
+public:
+    GoalModel(int x, int y): EntityModel(x, y){};
+};
+
+class PlayerModel : public EntityModel {
+public:
+    PlayerModel(int x, int y): EntityModel(x, y), vh(0), vv(0), a(0), g(0.3), maxVh(3), maxVv(5){};
+
+    void update();
+    void moveLeft();
+    void moveRight();
+    void jump();
+    bool collidesWithWall();
+
+    // Velocity
+    float vh;
+    float vv;
+
+    // Acceleration
+    float a;
+
+    // Gravity
+    float g;
+
+    // Terminal velocity
+    float maxVh;
+    float maxVv;
 };
 
 

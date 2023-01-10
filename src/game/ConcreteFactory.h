@@ -15,6 +15,8 @@ public:
     ConcreteFactory(const std::shared_ptr<sf::RenderWindow> _window): window(_window) {};
     std::shared_ptr<MenuModel> createMenu() override;
     std::shared_ptr<WallModel> createWall(int x, int y) override;
+    std::shared_ptr<GoalModel> createGoal(int x, int y) override;
+    std::shared_ptr<PlayerModel> createPlayer(int x, int y) override;
 };
 
 

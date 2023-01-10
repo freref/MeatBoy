@@ -2,7 +2,7 @@
 
 #include "EntityView.h"
 
-void WallView::draw(int x, int y, int size) {
+void WallView::draw(float x, float y, int size) {
     sf::RectangleShape rectangle(sf::Vector2f(size, size));
 
     // Set the rectangle's position (in pixels)
@@ -13,6 +13,30 @@ void WallView::draw(int x, int y, int size) {
 
     window->draw(rectangle);
     window->display();
+}
+
+void PlayerView::draw(float x, float y, int size) {
+    sf::RectangleShape rectangle(sf::Vector2f(size/4, size/4));
+
+    // Set the rectangle's position (in pixels)
+    rectangle.setPosition(x + 1.5*size/4, y + 3*size/4);
+
+    // Set the rectangle's fill color
+    rectangle.setFillColor(sf::Color::White);
+
+    window->draw(rectangle);
+}
+
+void GoalView::draw(float x, float y, int size) {
+    sf::RectangleShape rectangle(sf::Vector2f(size/4, size/4));
+
+    // Set the rectangle's position (in pixels)
+    rectangle.setPosition(x + 1.5*size/4 , y + 3*size/4);
+
+    // Set the rectangle's fill color
+    rectangle.setFillColor(sf::Color::Green);
+
+    window->draw(rectangle);
 }
 
 void MenuView::draw() {
